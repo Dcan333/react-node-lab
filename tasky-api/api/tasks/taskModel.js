@@ -7,7 +7,7 @@ const TaskSchema = new Schema({
     description: String,
     deadline: Date,
     done: Boolean,
-    priority: { type: String, enum: ["Low", "Medium", "High", "low", "medium", "high"], required: true },
+    priority: { type: String, enum: ["Low", "Medium", "High"], required: true },
     created_at: Date,
     updated_at: Date
 });
