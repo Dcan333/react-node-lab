@@ -9,6 +9,8 @@ import ProfilePage from "./pages/profilePage";
 import AuthContextProvider from "./contexts/authContext";
 import ProtectedRoutes from "./protectedRoutes";
 import './App.css';
+import Header from "./components/siteHeader";
+
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -26,7 +28,7 @@ const App = () => {
       <BrowserRouter>
         <AuthContextProvider>
           <div className="container">
-            <h1>Tasky</h1>
+            <Header />
             <Routes>
               <Route path="/" element={< StartPage />} />
               <Route path="/login" element={< LoginPage />} />
@@ -38,9 +40,9 @@ const App = () => {
               <Route path="*" element={<Navigate to="/" />} />
             </Routes>
           </div>
-          </AuthContextProvider>
+        </AuthContextProvider>
       </BrowserRouter>
-      
+
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );
