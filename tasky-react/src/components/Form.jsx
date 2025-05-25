@@ -1,27 +1,39 @@
-import React from "react";
-
 const AddTaskForm = (props) => {
-
     return (
         <div>
             <form onSubmit={props.submit}>
                 <label>
                     Task title:
-                    <input type="text" name="title" required onChange={(event) => props.change(event)} />
+                    <input 
+                        type="text" 
+                        name="title" 
+                        required 
+                    />
                 </label>
                 <br />
                 <label>
                     Due date:
-                    <input type="date" name="deadline" required onChange={(event) => props.change(event)} />
+                    <input 
+                        type="date" 
+                        name="deadline" 
+                        required 
+                    />
                 </label>
                 <br />
                 <label>
                     Details:
-                    <input type="text" name="description" onChange={(event) => props.change(event)} />
+                    <input 
+                        type="text" 
+                        name="description" 
+                    />
                 </label>
                 <label>
                     Priority:
-                    <select name="priority" required onChange={(event) => props.change(event)} >
+                    <select 
+                        name="priority" 
+                        required 
+                        defaultValue=""
+                    >
                         <option value="">please enter a priority</option>
                         <option value="low">low</option>
                         <option value="medium">medium</option>
@@ -29,7 +41,7 @@ const AddTaskForm = (props) => {
                     </select>
                 </label>
                 <br />
-                <input type="submit" value="Submit" />
+                <input type="submit" value="Submit" disabled={props.disabled} />
             </form>
         </div>
     )

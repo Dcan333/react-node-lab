@@ -4,11 +4,14 @@ export const getTasks = async () => {
         headers: {
             'Authorization': window.localStorage.getItem('token')
         }
+    })
+    
+    if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
     }
-    )
+    
     return response.json();
 };
-
 
 export const addTask = async (data) => {
     const res = await fetch(
@@ -22,12 +25,16 @@ export const addTask = async (data) => {
             body: JSON.stringify(data)
         }
     )
+    
+    if (!res.ok) {
+        throw new Error(`HTTP error! status: ${res.status}`);
+    }
+    
     return res.json();
 };
 
-
 export const deleteTask = async (id) => {
-    const res =  fetch(
+    const res = await fetch(  // Fixed: added missing 'await'
         `http://localhost:8080/api/tasks/${id}`,
         {
             method: 'DELETE',
@@ -36,9 +43,13 @@ export const deleteTask = async (id) => {
             }
         }
     )
+    
+    if (!res.ok) {
+        throw new Error(`HTTP error! status: ${res.status}`);
+    }
+    
     return res;
 };
-
 
 export const updateTask = async (data) => {
     const res = await fetch(
@@ -52,7 +63,12 @@ export const updateTask = async (data) => {
             body: JSON.stringify(data)
         }
     )
-        return res.json();
+    
+    if (!res.ok) {
+        throw new Error(`HTTP error! status: ${res.status}`);
+    }
+    
+    return res.json();
 };
 
 export const login = async (username, password) => {
@@ -63,6 +79,11 @@ export const login = async (username, password) => {
         method: 'post',
         body: JSON.stringify({ username: username, password: password })
     });
+    
+    if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    
     return response.json();
 };
 
@@ -74,5 +95,10 @@ export const signup = async (username, password) => {
         method: 'post',
         body: JSON.stringify({ username: username, password: password })
     });
+    
+    if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    
     return response.json();
 };
